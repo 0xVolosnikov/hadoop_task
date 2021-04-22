@@ -65,10 +65,10 @@ public void setField2(String field, float[] val) {
 */
 String t = key.toString();
 value.setField2("i", is.get(t));
-value.setField2("j", is.get(t));
-value.setField2("k", is.get(t));
-value.setField2("w", is.get(t));
-value.setField2("d", is.get(t));
+value.setField2("j", js.get(t));
+value.setField2("k", ks.get(t));
+value.setField2("w", ws.get(t));
+value.setField2("d", ds.get(t));
     return value;
   }
 
@@ -101,20 +101,18 @@ do {
 		Text txt = new Text();
 		off = 0;
 		off = in.readLine(txt);
-                res = txt.toString().trim();
+                res = txt.toString().replaceAll("\\s+", " ").trim();
 		Matcher matcher = LINE_PATTERN.matcher(res);
 		while (!matcher.find()) {
 			off = in.readLine(txt);
-                res = txt.toString();
-                if (off == 0) break;
-                matcher = LINE_PATTERN.matcher(res);
-		} 
+                        res = txt.toString().replaceAll("\\s+", " ").trim();
+                        if (off == 0) break;
+                        matcher = LINE_PATTERN.matcher(res);
+		}
 if (off == 0) break;
 res = res.trim();
-System.out.println("RES: " + res);
 String key = res.substring(0, 16);
 
-System.out.println("RES: " + res);
 String v = res.substring(16);
 
 
@@ -139,6 +137,7 @@ if (name.contains("k")) ks.put(key, values);
 if (name.contains("w")) ws.put(key, values);
 if (name.contains("d")) ds.put(key, values);
 } while (off != 0);
+
 keyss = is.keySet();
 keyss.removeIf(p -> !js.keySet().contains(p));
 keyss.removeIf(p -> !ks.keySet().contains(p));
