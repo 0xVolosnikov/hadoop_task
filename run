@@ -1,0 +1,6 @@
+#!/bin/sh
+
+input_directory=/bigdata-course/datasets/ndbc-small
+output_directory=/user/$USER/output6.991
+rm -rvf $output_directory
+yarn jar build/spectrum.jar $input_directory $output_directory
